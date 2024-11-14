@@ -133,6 +133,8 @@ export const doConversation = (conversationRequest: ConversationRequest) => {
   const body = {
     messages: [...messages, userPromptWithoutTime],
     model,
+    k: 6,
+    temperature: 0.2,
   };
 
   //   let conversation: Conversation;
