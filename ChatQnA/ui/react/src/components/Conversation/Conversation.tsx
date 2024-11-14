@@ -13,6 +13,7 @@ import { getCurrentTimeStamp } from '../../common/util'
 import { useDisclosure } from '@mantine/hooks'
 import DataSource from './DataSource'
 import { ConversationSideBar } from './ConversationSideBar'
+import { LLM_MODEL_ID, SET_SYSTEM_PROMPT, HIDE_UPLOAD_BUTTON } from '../../config'
 
 type ConversationProps = {
   title:string
@@ -52,13 +53,15 @@ const Conversation = ({ title }: ConversationProps) => {
       })
     }
     
-    messages = [systemPrompt, ...messages]
+    if (SET_SYSTEM_PROMPT) {
+      messages = [systemPrompt, ...messages]
+    }
 
     doConversation({
       conversationId: selectedConversationId,
       userPrompt,
       messages,
-      model: "Intel/neural-chat-7b-v3-3",
+      model: LLM_MODEL_ID,
     })
     setPrompt("")
   }
@@ -104,9 +107,11 @@ const Conversation = ({ title }: ConversationProps) => {
                   <IconMessagePlus />
                 </ActionIcon>
               )}
-              <ActionIcon onClick={openFileUpload} size={32} variant="default">
-                <IconFilePlus />
-              </ActionIcon>
+              {!HIDE_UPLOAD_BUTTON && (
+                <ActionIcon onClick={openFileUpload} size={32} variant="default">
+                  <IconFilePlus />
+                </ActionIcon>
+              ) }
             </Group>
           </div>
 
