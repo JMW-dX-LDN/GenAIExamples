@@ -133,6 +133,9 @@ export const doConversation = (conversationRequest: ConversationRequest) => {
   const body = {
     messages: [...messages, userPromptWithoutTime],
     model,
+    search_type: 'mmr',
+    k: 5,
+    top_k: 50,
   };
 
   //   let conversation: Conversation;
