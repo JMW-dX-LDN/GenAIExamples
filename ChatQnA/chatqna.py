@@ -9,6 +9,8 @@ import re
 from comps import ChatQnAGateway, MicroService, ServiceOrchestrator, ServiceType
 from langchain_core.prompts import PromptTemplate
 
+CHATQNA_PROMPT_TEMPLATE = os.getenv("CHATQNA_PROMPT_TEMPLATE", None)
+
 
 class ChatTemplate:
     @staticmethod
@@ -22,6 +24,8 @@ class ChatTemplate:
 ### 问题：{question}
 ### 回答：
 """
+        elif CHATQNA_PROMPT_TEMPLATE is not None:
+            template = CHATQNA_PROMPT_TEMPLATE
         else:
             template = """
 ### You are a helpful, respectful and honest assistant to help the user with questions. \
