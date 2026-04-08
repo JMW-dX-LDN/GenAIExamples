@@ -6,3 +6,4 @@ pydub
 soundfile
 torch
 transformers
+aiohttp>=3.13.4 # not directly required, pinned by Snyk to avoid a vulnerability
