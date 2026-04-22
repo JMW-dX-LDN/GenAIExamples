@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-FROM python:3.11-slim
+FROM python:3.14.4-slim
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends --fix-missing \
     libgl1-mesa-glx \
